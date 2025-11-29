@@ -54,6 +54,6 @@ resp = requests.post(
     },
 )
 print("status:", resp.status_code, resp.text)
-resp.raise_for_status()
+
 
 print("Файл загружен на Яндекс.Диск:", disk_file_path)
