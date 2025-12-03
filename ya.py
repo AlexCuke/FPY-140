@@ -1,25 +1,7 @@
 import requests
 import json
 import os
-import ya  # если действительно нужен
-
-
-print("Соединениe с сайтом cataas.com установлено")
-
-
-class CatAPi:
-    def __init__(self):
-        self.text = ""
-        self.base_url = "https://cataas.com/cat/says"
-
-    def get_input(self):
-        self.text = input("Введите текст или 'q' для выхода: ").strip()
-        return self.text
-
-    def get_url(self):
-        # Кодируем пробелы и т.п.
-        return f"{self.base_url}/{requests.utils.quote(self.text)}?size=50&color=white"
-
+import def_f
 
 class YaDisk:
     def __init__(self, text):
@@ -41,7 +23,7 @@ class YaDisk:
             headers=self.headers,
             params={"path": self.folder_path},
         )
-        d_load(resp, "folder", self.folder_path)
+        def_f.d_load(resp, "folder", self.folder_path)
         return resp
 
     def upload_from_url(self, file_url: str):
@@ -97,36 +79,5 @@ class YaDisk:
 
         remote_path = f"{self.folder_path}/{file_path}"
         self.upload_local_file(file_path, remote_path)
-        d_load(resp, "json", self.folder_path)
+        def_f.d_load(resp, "json", self.folder_path)
         return files
-
-
-def d_load(resp, ff, create_path):
-    if resp.status_code in [200, 201, 202]:
-        if ff == "file":
-            print(f"Файл загружен на Яндекс.Диск: {create_path}")
-        elif ff == "folder":
-            print(f"Папка {create_path} создана")
-        elif ff == "json":
-            print("Файл json загружен на Яндекс.Диск.")
-    else:
-        if ff == "file":
-            print("Ошибка загрузки файла, код:", resp.status_code)
-        elif ff == "folder":
-            print("Ошибка создания папки: код", resp.status_code)
-        elif ff == "json":
-            print("Ошибка загрузки файла, код:", resp.status_code)
-
-
-cat = CatAPi()
-text1 = cat.get_input()
-
-while text1 != "q":
-    url1 = cat.get_url()
-    ya1 = YaDisk(text1)
-    ya1.ya_create()
-    ya1.upload_from_url(url1)
-    ya1.get_cat_metadata()
-    text1 = cat.get_input()
-else:
-    print("Спасибо за работу!")
