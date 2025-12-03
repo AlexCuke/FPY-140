@@ -38,7 +38,7 @@ class YaDisk:
                 "overwrite": "true",
             },
         )
-        d_load(resp, "file", disk_path)
+        def_f.d_load(resp, "file", disk_path)
         return resp
 
     def upload_local_file(self, local_path: str, remote_path: str):
