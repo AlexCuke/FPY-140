@@ -5,6 +5,7 @@ class CatAPi:
     def __init__(self):
         self.text = ""
         self.base_url=conf.cat_url
+        
     def get_input(self):
         self.text = input("Введите текст или 'q' для выхода: ").strip()
         return self.text

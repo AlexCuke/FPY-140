@@ -1,7 +1,5 @@
 import ya  
 import cat
-import conf  
-
 
 cat1 = cat.CatAPi()
 text1 = cat1.get_input()

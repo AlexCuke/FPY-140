@@ -2,7 +2,7 @@ import requests
 import json
 import os
 import def_f
-
+import conf
 class YaDisk:
     def __init__(self, text):
         self.api_key = os.getenv("YADISK_TOKEN")
@@ -14,7 +14,7 @@ class YaDisk:
             "Accept": "application/json",
         }
         self.text = text
-        self.folder_path = "/FPY-140"
+        self.folder_path = conf.folder_url
 
     def ya_create(self):
         print("Создаем папку", self.folder_path)
